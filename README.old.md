@@ -1,10 +1,13 @@
 # mesto-react
 
+# Проект: Место [Ссылка на github.io](https://msjuliamars.github.io/mesto/)
+
 **Figma**
 
 - [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+- [Ссылка на макет в Figma - 6 практическая ](<[https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=50160%3A559](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=1124%3A2)>)
 
-# Проект: Сдача проекта Mesto: портирование и работа с API
+# Проект: Mesto
 
 ## Результат работы на факультете "Веб-разработчик" Яндекс.Практикум
 
@@ -30,7 +33,7 @@
 - React: useState, useEffect
 
 _Технологии и функционал:_
-Flexbox,Grid Layout, Positioning Elements, Animation and Transform using CSS, Iframe, BEM Methodology, File Structure and File Paths (Nested BEM), Git, JS, DOM, Webpack, React, useState, useRef, useEffect, объект контекста CurrentUserContext
+Flexbox,Grid Layout, Positioning Elements, Animation and Transform using CSS, Iframe, BEM Methodology, File Structure and File Paths (Nested BEM), Git, JS, DOM, Webpack, React
 
 Разработка интерфейса для разных устройств.
 
@@ -46,29 +49,4 @@ git clone https://github.com/msjuliamars/mesto-react.git
 
 #### **Чеклист**
 
-- [sprint-11](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-11.pdf)
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [sprint-10](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-10.pdf)
