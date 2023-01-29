@@ -9,6 +9,8 @@ import PopupDeleteCard from "components/PopupDeleteCard.jsx";
 import PopupEditAvatar from "components/PopupEditAvatar.jsx";
 import PopupEditProfile from "components/PopupEditProfile.jsx";
 import Header from "./Header.jsx";
+import Login from "./Login";
+import { BrowserRouter as Routes, Route, Switch} from "react-router-dom";
 
 function App() {
 
@@ -117,37 +119,47 @@ function App() {
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className="root">
-                <Header/>
-                <Main
-                    onEditAvatar={handleEditAvatarClick}
-                    onEditProfile={handleEditProfileClick}
-                    onAddPlace={handleAddPlaceClick}
-                    onCardClick={handleCardClick}
-                    cards={cards}
-                    onCardLike={handleCardLike}
-                    onCardDelete={handleCardDelete}
-                />
+                {/*<Header/>*/}
+
+                <Switch>
+                    <Route path="/sign-in">  {/*для авторизации пользователя*/}
+                        <Login />
+                    </Route>
+                    <Route path="/sign-up">  {/*для регистрации  пользователя*/}
+                        <Login />
+                    </Route>
+                </Switch>
                 <Footer/>
-                <PopupEditAvatar
-                    isOpen={isEditAvatarPopupOpen}
-                    onClose={closeAllPopups}
-                    onUpdateAvatar={handleUpdateAvatar}
-                />
-                <PopupEditProfile
-                    isOpen={isEditProfilePopupOpen}
-                    onClose={closeAllPopups}
-                    onUpdateUser={handleUpdateUser}
-                />
-                <PopupAddNewPlace
-                    isOpen={isAddPlacePopupOpen}
-                    onClose={closeAllPopups}
-                    onAddPlace={handleAddPlaceSubmit}
-                />
-                <PopupDeleteCard
-                    // isOpen={isDeleteCardPopupOpen}
-                    onClose={closeAllPopups}
-                />
-                <ImagePopup onClose={closeAllPopups} card={selectedCard}/>
+                {/*<Main*/}
+                {/*    onEditAvatar={handleEditAvatarClick}*/}
+                {/*    onEditProfile={handleEditProfileClick}*/}
+                {/*    onAddPlace={handleAddPlaceClick}*/}
+                {/*    onCardClick={handleCardClick}*/}
+                {/*    cards={cards}*/}
+                {/*    onCardLike={handleCardLike}*/}
+                {/*    onCardDelete={handleCardDelete}*/}
+                {/*/>*/}
+                {/*<Footer/>*/}
+                {/*<PopupEditAvatar*/}
+                {/*    isOpen={isEditAvatarPopupOpen}*/}
+                {/*    onClose={closeAllPopups}*/}
+                {/*    onUpdateAvatar={handleUpdateAvatar}*/}
+                {/*/>*/}
+                {/*<PopupEditProfile*/}
+                {/*    isOpen={isEditProfilePopupOpen}*/}
+                {/*    onClose={closeAllPopups}*/}
+                {/*    onUpdateUser={handleUpdateUser}*/}
+                {/*/>*/}
+                {/*<PopupAddNewPlace*/}
+                {/*    isOpen={isAddPlacePopupOpen}*/}
+                {/*    onClose={closeAllPopups}*/}
+                {/*    onAddPlace={handleAddPlaceSubmit}*/}
+                {/*/>*/}
+                {/*<PopupDeleteCard*/}
+                {/*    // isOpen={isDeleteCardPopupOpen}*/}
+                {/*    onClose={closeAllPopups}*/}
+                {/*/>*/}
+                {/*<ImagePopup onClose={closeAllPopups} card={selectedCard}/>*/}
 
             </div>
         </CurrentUserContext.Provider>

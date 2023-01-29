@@ -56,3 +56,11 @@
 @import url(./blocks/popup/__image/popup__image.css);
 @import url(./blocks/popup/__picture-title/__title/popup__picture-title.css);
 @import url(./blocks/popup/_overlay/popup_overlay.css);
+
+/* login*/
+@import url(./blocks/login/login.css);
+@import url(./blocks/login/__form/login__form.css);
+@import url(./blocks/login/__title/login__title.css);
+@import url(./blocks/login/__text/login__text.css);
+@import url(./blocks/login/__field/login__field.css);
+@import url(./blocks/login/__button-enter/login__button-enter.css);

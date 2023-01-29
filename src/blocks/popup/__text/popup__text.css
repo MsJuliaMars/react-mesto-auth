@@ -1,13 +1,10 @@
 .popup__text {
   margin: 0;
-  margin-bottom: 32px;
+  margin-bottom: 13px;
   margin-left: 22px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 17px;
+
   padding-bottom: 6px;
-  color: #000000;
+
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   width: 80%;
@@ -15,6 +12,14 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+
+  color: #CCCCCC;
 }
 
 @media screen and (min-width: 768px) {
@@ -22,4 +27,3 @@
     margin-left: 36px;
   }
 }
-
