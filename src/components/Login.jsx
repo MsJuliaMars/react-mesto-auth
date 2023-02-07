@@ -1,6 +1,25 @@
 import React, {useState} from "react";
 
 const Login = ({onLogin}) => {
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
+    //
+    // const handleChangeEmail = (event) =>{
+    //     setEmail(event.target.value);
+    // };
+    //
+    // const handleChangePassword = (event)=>{
+    //     setPassword(event.target.value);
+    // };
+    //
+    // const handleSubmit=(event)=>{
+    //     event.preventDefault();
+    //
+    //     if(!email || !password){
+    //         return
+    //     }
+    //     onLogin(email, password);
+    // };
     const [userData, setUserData] = useState({email:'', password:''})
 
     const handleChange = (event) => {
@@ -14,7 +33,7 @@ const Login = ({onLogin}) => {
         if (!userData.email || !userData.password){
             return;
         }
-       onLogin(userData.email, userData.password);
+       onLogin({email:userData.email, password:userData.password});
     }
 
     return (
@@ -33,8 +52,10 @@ const Login = ({onLogin}) => {
                             // @ts-ignore
                             maxLength="40"
                             autoComplete="on"
-                            value={userData.email}
-                            onChange={handleChange}
+                            // value={email}
+                            // onChange={handleChangeEmail}
+                           value={userData.email}
+                           onChange={handleChange}
                             required
                         />
                     </label>
@@ -49,13 +70,16 @@ const Login = ({onLogin}) => {
                             // @ts-ignore
                             maxLength="200"
                             autoComplete="on"
+                            // value={password}
+                            // onChange={handleChangePassword}
                             value={userData.password}
                             onChange={handleChange}
                             required
                         />
                     </label>
                     <button className="login__button-enter" type="submit"
-                            aria-label="Вход в аккаунт пользователя">Вход</button>
+                            aria-label="Вход в аккаунт пользователя">Вход
+                    </button>
                 </form>
             </div>
         </>

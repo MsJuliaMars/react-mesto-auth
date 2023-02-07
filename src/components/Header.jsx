@@ -12,14 +12,14 @@ function Header({email, onLogout}) {
             />
         <Routes>
             <Route exact path='/' element={<div className='header__userInformations'>
-                <p className='header__email'>{email}</p>
-                <Link to='/sign-in' type='button' className='header__logoutUser' onClick={onLogout}>Выйти</Link></div>}>
+                <p className='header__email'></p>
+                <Link to='/sign-in' type='button' className='header__logoutUser' >Выйти</Link></div>}>
             </Route>
-            <Route path='sign-up' element={
-                <Link to='sign-in' className='header__login-register'>Войти</Link>}>
+            <Route path='/sign-up' element={
+                <Link to='/sign-in' className='header__login-register'>Войти</Link>}>
             </Route>
-            <Route path='sign-in' element={
-                <Link to='sign-up' className='header__login-register'>Регистрация</Link>}>
+            <Route path='/sign-in' element={
+                <Link to='/sign-up' className='header__login-register'>Регистрация</Link>}>
             </Route>
         </Routes>
 

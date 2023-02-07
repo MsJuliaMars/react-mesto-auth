@@ -27,7 +27,8 @@ function App() {
     const [loggedIn, setLoggedIn] = useState(false);
     const [successRegister, setSuccessRegister] = useState(false);
     const [email, setEmail] = useState('');
-    const history = useNavigate();
+    const navigate = useNavigate();
+
 
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -35,59 +36,53 @@ function App() {
     const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] =useState(false);
     const [selectedCard, setSelectedCard] = useState({name: "", link: ""});
 
-    const loginUser = useCallback(() => {
+    const login = useCallback(()=>{
         setLoggedIn(true);
     }, []);
 
-    const logoutUser = useCallback(() => {
+    const logout = useCallback(()=>{
         setLoggedIn(false);
-    }, []);
+    },[]);
 
-    // рагистрация пользователя
-    const handleRegister = (email, password) => {
-        apiAuth.register(email, password)
-            .then((res) => {
-                if (res.data) {
-                    setSuccessRegister(true);
-                    setIsInfoTooltipPopupOpen(true);
-                    history('/sign-in', {replace: true})
-                  //  history("/sign-in");
-                } else {
-                    setSuccessRegister(false);
-                    setIsInfoTooltipPopupOpen(true);
-                }
-            })
+    const handleLogin =({email, password})=>{
+        apiAuth.authorize(email,password).then((res)=>{
+            if(res?.jwt) {
+                localStorage.setItem('jwt', res.jwt);
+                login();
+                navigate('/');
+            }
+        }).catch((err) =>{
+            console.log(err);
+            setSuccessRegister(false);
+            setIsInfoTooltipPopupOpen(true);
+        })
+    };
+
+
+    const handleRegister=({email,password})=>{
+        apiAuth.register(email,password).then((res)=>{
+            if (res.data) {
+                setSuccessRegister(true);
+                setIsInfoTooltipPopupOpen(true);
+                navigate('/sign-in', {replace: true})
+            } else {
+                setSuccessRegister(false);
+                setIsInfoTooltipPopupOpen(true);
+            }
+        })
             .catch(err => {
                 console.log(err);
                 setSuccessRegister(false);
                 setIsInfoTooltipPopupOpen(true);
             });
-    };
-
-    // авторизация пользователя
-    const handleLogin = (email, password) => {
-        apiAuth.authorize(email, password)
-            .then((res) => {
-                if (res?.jwt) {
-                    localStorage.setItem('jwt', res.jwt);
-                    setEmail(email);
-                    loginUser();
-                    history('/');
-                }
-            })
-            .catch(err => {
-                console.log(err);
-                setSuccessRegister(false);
-                setIsInfoTooltipPopupOpen(true);
-            })
-    };
+    }
 
     // сброс параметров после "выхода", удаление токена
     const handleLogout = () => {
-        logoutUser();
+        logout();
         setEmail(null);
         localStorage.removeItem('jwt');
-        history("/sign-in")
+        navigate("/sign-in");
     };
 
     //сохранение токена в локальном хранилище и передача email
@@ -101,12 +96,12 @@ function App() {
                 if (res) {
                     setEmail(res.data.email);
                     // авторизуем пользователя
-                    loginUser();
-                    history("/")
+                    login();
+                    navigate("/");
                 }
             }).catch((err) => console.log(err));
         }
-    }, [history, loginUser, loggedIn]);
+    }, [navigate, login, loggedIn]);
 
     function handleAddKeydownListener() {
         document.addEventListener("keydown", handleEscClose);
@@ -204,10 +199,10 @@ function App() {
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className="root">
-                <Header email={email}  onLogout={handleLogout}/>
+                <Header email={email} onLogout={handleLogout}/>
                 <Routes>
                     <Route
-                        path="/"
+                      exact path="/"
                         element={
                             <ProtectedRouteElement loggedIn={loggedIn} element={Main}
                                                    onEditAvatar={handleEditAvatarClick}

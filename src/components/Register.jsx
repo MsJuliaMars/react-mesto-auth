@@ -16,13 +16,14 @@ const Register = ({onRegister}) => {
         if (userData.email === userData.password) {
             return;
         }
-        onRegister(userData.email, userData.password);
+        onRegister({email: userData.email,
+        password: userData.password});
     }
 
     return (
         <>
             <div className="login">
-                <form className="login__form" onSubmit={handleSubmit}>
+                <form className="login__form" >
                     <h2 className="login__title">Регистрация</h2>
                     <label className="login__field">
                         <input
