@@ -1,24 +1,40 @@
-import React from "react";
-import Header from "./Header";
+import React, {useState} from "react";
 
-function Login() {
+const Login = ({onLogin}) => {
+    const [userData, setUserData] = useState({email:'', password:''})
+
+    const handleChange = (event) => {
+        const {name, value} = event.target;
+        setUserData({...userData, [name]: value});
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        if (!userData.email || !userData.password){
+            return;
+        }
+       onLogin(userData.email, userData.password);
+    }
+
     return (
         <>
-            <Header></Header>
             <div className="login">
-                <form className="login__form">
+                <form className="login__form" onSubmit={handleSubmit}>
                     <h2 className="login__title">Вход</h2>
                     <label className="login__field">
                         <input
                             type="email"
                             name="email"
                             className="login__text login__text_email"
-                            id="login-email"
                             placeholder="Email"
                             // @ts-ignore
                             minLength="2"
                             // @ts-ignore
                             maxLength="40"
+                            autoComplete="on"
+                            value={userData.email}
+                            onChange={handleChange}
                             required
                         />
                     </label>
@@ -27,13 +43,14 @@ function Login() {
                             type="password"
                             name="password"
                             className="login__text login__text_password"
-                            id="login-password"
-                            //defaultValue="Исследователь океана"
                             placeholder="Пароль"
                             // @ts-ignore
                             minLength="2"
                             // @ts-ignore
                             maxLength="200"
+                            autoComplete="on"
+                            value={userData.password}
+                            onChange={handleChange}
                             required
                         />
                     </label>

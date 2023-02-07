@@ -1,0 +1,9 @@
+.header__userInformations {
+    display: flex;
+    justify-content: end;
+    flex-direction: row;
+    position: relative;
+    margin-top:51px;
+    max-width:50%;
+
+}

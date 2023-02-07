@@ -7,14 +7,27 @@
     font-size: 14px;
     line-height: 17px;
     padding-bottom: 6px;
-    color: #000000;
+    color: #FFFFFF;
     border: none;
     width: 358px;
-    height: 0px;
+    height: 27px;
     border-bottom: 2px solid #CCCCCC;;
     /*width: 80%;*/
     outline: none;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    background: transparent;
+
+}
+@-webkit-keyframes autofill {
+    to {
+        color: #000;
+        background: transparent;
+    }
+}
+
+input:-webkit-autofill {
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
 }
