@@ -51,10 +51,10 @@ const Login = ({onLogin}) => {
                             minLength="2"
                             // @ts-ignore
                             maxLength="40"
-                            autoComplete="on"
+                            autoComplete="off"
                             // value={email}
                             // onChange={handleChangeEmail}
-                           value={userData.email}
+                           value={userData.email || ''}
                            onChange={handleChange}
                             required
                         />
@@ -69,16 +69,16 @@ const Login = ({onLogin}) => {
                             minLength="2"
                             // @ts-ignore
                             maxLength="200"
-                            autoComplete="on"
+                            autoComplete="off"
                             // value={password}
                             // onChange={handleChangePassword}
-                            value={userData.password}
+                            value={userData.password || ''}
                             onChange={handleChange}
                             required
                         />
                     </label>
                     <button className="login__button-enter" type="submit"
-                            aria-label="Вход в аккаунт пользователя">Вход
+                            aria-label="Вход в аккаунт пользователя">Войти
                     </button>
                 </form>
             </div>

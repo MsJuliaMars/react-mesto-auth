@@ -16,6 +16,7 @@ import ProtectedRouteElement from './ProtectedRoute';
 import Register from "./Register";
 import * as apiAuth from "../utils/apiAuth";
 import InfoTooltip from "./InfoTooltip";
+import {getContent} from "../utils/apiAuth";
 
 function App() {
 
@@ -26,6 +27,10 @@ function App() {
     // Авторизация
     const [loggedIn, setLoggedIn] = useState(false);
     const [successRegister, setSuccessRegister] = useState(false);
+    const [userData, setUserData] = useState({
+        email: "",
+        password: "",
+    });
     const [email, setEmail] = useState('');
     const navigate = useNavigate();
 
@@ -48,7 +53,10 @@ function App() {
         apiAuth.authorize(email,password).then((res)=>{
             if(res?.jwt) {
                 localStorage.setItem('jwt', res.jwt);
-                login();
+                setLoggedIn(true);
+                setEmail(email);
+                setSuccessRegister(true);
+                setIsInfoTooltipPopupOpen(true);
                 navigate('/');
             }
         }).catch((err) =>{
@@ -64,7 +72,7 @@ function App() {
             if (res.data) {
                 setSuccessRegister(true);
                 setIsInfoTooltipPopupOpen(true);
-                navigate('/sign-in', {replace: true})
+                navigate('/sign-in')
             } else {
                 setSuccessRegister(false);
                 setIsInfoTooltipPopupOpen(true);
@@ -85,6 +93,7 @@ function App() {
         navigate("/sign-in");
     };
 
+
     //сохранение токена в локальном хранилище и передача email
     useEffect(() => {
         // если у пользователя есть токен в localStorage,
@@ -94,14 +103,20 @@ function App() {
             // проверим токен
             apiAuth.checkToken(jwt).then((res) => {
                 if (res) {
-                    setEmail(res.data.email);
                     // авторизуем пользователя
-                    login();
+                    setLoggedIn(true);
+                    setEmail(res.data.email);
                     navigate("/");
                 }
             }).catch((err) => console.log(err));
         }
-    }, [navigate, login, loggedIn]);
+    }, []);
+
+    useEffect(() => {
+        if (loggedIn) {
+            navigate("/");
+        }
+    }, [loggedIn, navigate]);
 
     function handleAddKeydownListener() {
         document.addEventListener("keydown", handleEscClose);
@@ -167,10 +182,12 @@ function App() {
     }, []);
 
     useEffect(() => { // получение карточек с сервера
-        api.downloadingCards()
-            .then((res) => setCards(res))
-            .catch((err) => console.log(err));
-    }, []);
+        if(setLoggedIn) {
+            api.downloadingCards()
+                .then((res) => setCards(res))
+                .catch((err) => console.log(err));
+        }
+    }, [loggedIn]);
 
     const handleUpdateAvatar = useCallback((avatarData) => {
         api.setUserAvatar(avatarData)
@@ -199,7 +216,7 @@ function App() {
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className="root">
-                <Header email={email} onLogout={handleLogout}/>
+                <Header email={email} onLogout={handleLogout} />
                 <Routes>
                     <Route
                       exact path="/"

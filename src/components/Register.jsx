@@ -13,6 +13,7 @@ const Register = ({onRegister}) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();// Запрещаем браузеру переходить по адресу формы
+
         if (userData.email === userData.password) {
             return;
         }
@@ -23,7 +24,7 @@ const Register = ({onRegister}) => {
     return (
         <>
             <div className="login">
-                <form className="login__form" >
+                <form className="login__form" onSubmit={handleSubmit}>
                     <h2 className="login__title">Регистрация</h2>
                     <label className="login__field">
                         <input
@@ -36,7 +37,7 @@ const Register = ({onRegister}) => {
                             // @ts-ignore
                             maxLength="40"
                             autoComplete="off"
-                            value={userData.email}
+                            value={userData.email || ''}
                             onChange={handleChange}
                             required
                         />
@@ -52,7 +53,7 @@ const Register = ({onRegister}) => {
                             // @ts-ignore
                             maxLength="20"
                             autoComplete="off"
-                            value={userData.password}
+                            value={userData.password || ''}
                             onChange={handleChange}
                             required
                         />
