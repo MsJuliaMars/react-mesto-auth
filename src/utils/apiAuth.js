@@ -20,11 +20,12 @@ export const authorize = (email, password) => {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         },
-        body: JSON.stringify({email, password})
+        body: JSON.stringify({ email, password })
     }).then(getResponse);
 };
+
 
 export const checkToken = (jwt) => {
     return fetch(`${BASE_URL}/users/me`, {

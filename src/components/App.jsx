@@ -34,41 +34,22 @@ function App() {
     const [email, setEmail] = useState('');
     const navigate = useNavigate();
 
-
     const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
     const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
     const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
-    const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] =useState(false);
+    const [isInfoTooltipPopupOpen, setIsInfoTooltipPopupOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState({name: "", link: ""});
 
-    const login = useCallback(()=>{
+    const login = useCallback(() => {
         setLoggedIn(true);
     }, []);
 
-    const logout = useCallback(()=>{
+    const logout = useCallback(() => {
         setLoggedIn(false);
-    },[]);
+    }, []);
 
-    const handleLogin =({email, password})=>{
-        apiAuth.authorize(email,password).then((res)=>{
-            if(res?.jwt) {
-                localStorage.setItem('jwt', res.jwt);
-                setLoggedIn(true);
-                setEmail(email);
-                setSuccessRegister(true);
-                setIsInfoTooltipPopupOpen(true);
-                navigate('/');
-            }
-        }).catch((err) =>{
-            console.log(err);
-            setSuccessRegister(false);
-            setIsInfoTooltipPopupOpen(true);
-        })
-    };
-
-
-    const handleRegister=({email,password})=>{
-        apiAuth.register(email,password).then((res)=>{
+    const handleRegister = ({email, password}) => {
+        apiAuth.register(email, password).then((res) => {
             if (res.data) {
                 setSuccessRegister(true);
                 setIsInfoTooltipPopupOpen(true);
@@ -85,6 +66,21 @@ function App() {
             });
     }
 
+    const handleLogin = ({email, password}) => {
+        apiAuth.authorize(email, password).then((res) => {
+            localStorage.setItem('jwt', res.token);
+            setLoggedIn(true);
+            setEmail(email);
+            setSuccessRegister(true);
+            setIsInfoTooltipPopupOpen(true);
+            navigate('/');
+        }).catch((err) => {
+            console.log(err);
+            setSuccessRegister(false);
+            setIsInfoTooltipPopupOpen(true);
+        })
+    };
+
     // сброс параметров после "выхода", удаление токена
     const handleLogout = () => {
         logout();
@@ -92,7 +88,6 @@ function App() {
         localStorage.removeItem('jwt');
         navigate("/sign-in");
     };
-
 
     //сохранение токена в локальном хранилище и передача email
     useEffect(() => {
@@ -182,7 +177,7 @@ function App() {
     }, []);
 
     useEffect(() => { // получение карточек с сервера
-        if(setLoggedIn) {
+        if (setLoggedIn) {
             api.downloadingCards()
                 .then((res) => setCards(res))
                 .catch((err) => console.log(err));
@@ -216,10 +211,10 @@ function App() {
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className="root">
-                <Header email={email} onLogout={handleLogout} />
+                <Header email={email} onLogout={handleLogout}/>
                 <Routes>
                     <Route
-                      exact path="/"
+                        exact path="/"
                         element={
                             <ProtectedRouteElement loggedIn={loggedIn} element={Main}
                                                    onEditAvatar={handleEditAvatarClick}
@@ -255,7 +250,8 @@ function App() {
                     onClose={closeAllPopups}
                 />
                 <ImagePopup onClose={closeAllPopups} card={selectedCard}/>
-                <InfoTooltip isOpen={isInfoTooltipPopupOpen} onClose={closeAllPopups} successRegister={successRegister}/>
+                <InfoTooltip isOpen={isInfoTooltipPopupOpen} onClose={closeAllPopups}
+                             successRegister={successRegister}/>
             </div>
         </CurrentUserContext.Provider>
     );

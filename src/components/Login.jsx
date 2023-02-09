@@ -1,26 +1,7 @@
 import React, {useState} from "react";
 
 const Login = ({onLogin}) => {
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-    //
-    // const handleChangeEmail = (event) =>{
-    //     setEmail(event.target.value);
-    // };
-    //
-    // const handleChangePassword = (event)=>{
-    //     setPassword(event.target.value);
-    // };
-    //
-    // const handleSubmit=(event)=>{
-    //     event.preventDefault();
-    //
-    //     if(!email || !password){
-    //         return
-    //     }
-    //     onLogin(email, password);
-    // };
-    const [userData, setUserData] = useState({email:'', password:''})
+    const [userData, setUserData] = useState({email: '', password: ''})
 
     const handleChange = (event) => {
         const {name, value} = event.target;
@@ -30,10 +11,10 @@ const Login = ({onLogin}) => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (!userData.email || !userData.password){
+        if (!userData.email || !userData.password) {
             return;
         }
-       onLogin({email:userData.email, password:userData.password});
+        onLogin({email: userData.email, password: userData.password});
     }
 
     return (
@@ -54,8 +35,8 @@ const Login = ({onLogin}) => {
                             autoComplete="off"
                             // value={email}
                             // onChange={handleChangeEmail}
-                           value={userData.email || ''}
-                           onChange={handleChange}
+                            value={userData.email || ''}
+                            onChange={handleChange}
                             required
                         />
                     </label>

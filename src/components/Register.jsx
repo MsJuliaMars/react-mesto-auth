@@ -17,8 +17,10 @@ const Register = ({onRegister}) => {
         if (userData.email === userData.password) {
             return;
         }
-        onRegister({email: userData.email,
-        password: userData.password});
+        onRegister({
+            email: userData.email,
+            password: userData.password
+        });
     }
 
     return (
