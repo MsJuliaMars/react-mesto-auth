@@ -38,7 +38,7 @@ const Register = ({onRegister}) => {
                             minLength="2"
                             // @ts-ignore
                             maxLength="40"
-                            autoComplete="off"
+                            autoComplete="new-password"
                             value={userData.email || ''}
                             onChange={handleChange}
                             required
@@ -54,7 +54,7 @@ const Register = ({onRegister}) => {
                             minLength="2"
                             // @ts-ignore
                             maxLength="20"
-                            autoComplete="off"
+                            autoComplete="new-password"
                             value={userData.password || ''}
                             onChange={handleChange}
                             required
@@ -63,7 +63,7 @@ const Register = ({onRegister}) => {
                     <button className="login__button-enter" type="submit"
                             aria-label="Вход в аккаунт пользователя">Зарегистрироваться
                     </button>
-                    <p>Уже зарегистрированы? <Link to='/sign-in'>Войти</Link></p>
+                    <p>Уже зарегистрированы? <Link to='/sign-in' className='login__link-entry'>Войти</Link></p>
                 </form>
             </div>
         </>

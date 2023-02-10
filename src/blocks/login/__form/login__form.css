@@ -9,3 +9,9 @@
     margin-top: 60px;
     paddind: 0;
 }
+
+@media (min-width: 1024px) {
+    .login__form{
+        /*margin-bottom: auto;*/
+    }
+}

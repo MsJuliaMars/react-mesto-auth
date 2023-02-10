@@ -5,5 +5,12 @@
     position: relative;
     margin-top:51px;
     max-width:50%;
-
+}
+@media screen and (max-width: 320px) {
+    .header__userInformations{
+        min-width: 320px;
+        border-bottom: 1px solid rgba(84, 84, 84, 0.7);
+        flex-direction: column;
+        align-items: center;
+    }
 }

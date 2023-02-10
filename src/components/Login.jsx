@@ -32,9 +32,7 @@ const Login = ({onLogin}) => {
                             minLength="2"
                             // @ts-ignore
                             maxLength="40"
-                            autoComplete="off"
-                            // value={email}
-                            // onChange={handleChangeEmail}
+                            autoComplete="new-password"
                             value={userData.email || ''}
                             onChange={handleChange}
                             required
@@ -50,9 +48,7 @@ const Login = ({onLogin}) => {
                             minLength="2"
                             // @ts-ignore
                             maxLength="200"
-                            autoComplete="off"
-                            // value={password}
-                            // onChange={handleChangePassword}
+                            autoComplete="new-password"
                             value={userData.password || ''}
                             onChange={handleChange}
                             required

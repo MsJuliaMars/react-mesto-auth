@@ -1,5 +1,5 @@
 .login__button-enter {
-    margin: 186px auto 0px auto;
+    margin:143px 30px 20px 30px;
     padding: 0;
     width: 358px;
     height: 50px;
@@ -12,6 +12,7 @@
     text-align: center;
     border: none;
     border-radius: 2px;
+    max-width: 260px;
 }
 
 .login__button-enter:hover {
@@ -19,4 +20,18 @@
     color: #000000;
     background-color: #FFFFFF;
     cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+    .login__button-enter {
+        max-width: 358px;
+        margin: 186px auto auto auto;
+    }
+}
+@media screen and (min-width: 1024px) {
+    .login__button-enter {
+        max-width: 358px;
+        /*margin: 186px auto 210px auto;*/
+        /*margin:173px auto 20px auto;*/
+    }
 }

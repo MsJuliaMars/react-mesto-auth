@@ -1,18 +1,23 @@
 .login {
+    width: 100%;
+    min-height: 260px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    margin: 0;
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*left: 0;*/
-    /*bottom: 0;*/
-    /*right: 0;*/
-     background-color: #000000;
-    /*visibility: hidden;*/
-    /*opacity: 0;*/
-    /*z-index: 6;*/
-    /*transition: visibility 0.5s linear, opacity 0.5s ease;*/
+    margin: 0 auto;
+    background-color: #000000;
 }
+
+/*@media screen and (min-width: 768px) {*/
+/*    .login {*/
+/*        margin: 0 auto;*/
+/*        max-width: 360;*/
+/*    }*/
+/*}*/
+
+/*@media screen and (min-width: 1024px) {*/
+/*    .login {*/
+/*        max-width: 880px;*/
+/*    }*/
+/*}*/
