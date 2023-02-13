@@ -49,8 +49,9 @@ function App() {
     }, []);
 
     const handleRegister = ({email, password}) => {
+        console.log({email, password});
         apiAuth.register(email, password).then((res) => {
-            if (res.data) {
+            if (res?.data) {
                 setSuccessRegister(true);
                 setIsInfoTooltipPopupOpen(true);
                 navigate('/sign-in')
@@ -68,8 +69,9 @@ function App() {
 
     const handleLogin = ({email, password}) => {
         apiAuth.authorize(email, password).then((res) => {
-            localStorage.setItem('jwt', res.token);
-            setLoggedIn(true);
+            localStorage.setItem('jwt', res.jwt);
+            // setLoggedIn(true);
+            login();
             setEmail(email);
             setSuccessRegister(true);
             setIsInfoTooltipPopupOpen(true);
@@ -99,7 +101,8 @@ function App() {
             apiAuth.checkToken(jwt).then((res) => {
                 if (res) {
                     // авторизуем пользователя
-                    setLoggedIn(true);
+                    // setLoggedIn(true);
+                    login();
                     setEmail(res.data.email);
                     navigate("/");
                 }

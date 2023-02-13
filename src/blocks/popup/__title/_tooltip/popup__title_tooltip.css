@@ -1,4 +1,4 @@
-.popup__title_tooltip{
+.popup__title_tooltip {
     position: relative;
     width: 358px;
     height: 58px;
@@ -8,11 +8,11 @@
     line-height: 29px;
     text-align: center;
     color: #000000;
-    margin:0px auto 60px auto;
+    margin: 0px auto 60px auto;
 }
 
 @media screen and (max-width: 320px) {
-    .popup__title_tooltip{
+    .popup__title_tooltip {
         margin: 40px 18px 50px 18px;
         font-weight: 900;
         font-size: 20px;

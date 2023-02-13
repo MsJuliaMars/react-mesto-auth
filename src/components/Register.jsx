@@ -38,7 +38,7 @@ const Register = ({onRegister}) => {
                             minLength="2"
                             // @ts-ignore
                             maxLength="40"
-                            autoComplete="new-password"
+                            autoComplete="off"
                             value={userData.email || ''}
                             onChange={handleChange}
                             required
@@ -54,7 +54,7 @@ const Register = ({onRegister}) => {
                             minLength="2"
                             // @ts-ignore
                             maxLength="20"
-                            autoComplete="new-password"
+                            autoComplete="off"
                             value={userData.password || ''}
                             onChange={handleChange}
                             required

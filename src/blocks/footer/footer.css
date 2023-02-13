@@ -16,8 +16,5 @@
 @media screen and (min-width: 1024px) {
     .footer {
         max-width: 880px;
-        /*min-height: calc(100vh - 14px);*/
-        /*min-height: calc(100vh - 30px - 18px);*/
-        /*margin: 227px auto auto auto;*/
     }
 }
