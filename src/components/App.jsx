@@ -19,7 +19,6 @@ import Register from "./Register";
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
-  const [isLoading, setIsLoading] = useState(false); //для отслеживания состояния   загрузки во время ожидания ответа от сервера
 
   // Авторизация
   const [loggedIn, setLoggedIn] = useState(false);
