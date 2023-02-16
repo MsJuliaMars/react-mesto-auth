@@ -19,6 +19,7 @@ import Register from "./Register";
 function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // для отслеживания загрузки во время ожидагия от сервера ответа
 
   // Авторизация
   const [loggedIn, setLoggedIn] = useState(false);
@@ -203,13 +204,17 @@ function App() {
 
   const handleUpdateAvatar = useCallback(
     (avatarData) => {
+      setIsLoading(true);
       api
         .setUserAvatar(avatarData)
         .then((newData) => {
           setCurrentUser(newData);
           closeAllPopups();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
+        .finally(() => {
+          setIsLoading(false);
+        });
     },
     [closeAllPopups]
   );
@@ -282,6 +287,7 @@ function App() {
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
           onUpdateAvatar={handleUpdateAvatar}
+          isLoading={isLoading}
         />
         <PopupEditProfile
           isOpen={isEditProfilePopupOpen}

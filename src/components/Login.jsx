@@ -57,7 +57,7 @@ const Login = ({ onLogin }) => {
           type="submit"
           aria-label="Вход в аккаунт пользователя"
         >
-          Войти
+          Вход
         </button>
       </form>
     </div>
